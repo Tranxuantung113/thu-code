@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* === BẮT ĐẦU THAY THẾ TỪ ĐÂY === */
+
+@theme {
+    --font-sans: 'DM Sans', 'Playfair Display', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FDF8F3;
+    color: #2C2416;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding-top: 100px;
+}
+
+footer {
+    width: 100vw;
+    margin-top: 0;
+    background-color: #2C1A0E;
+    color: #A89580;
+    border-top: 3px solid #C9623F;
+}
+
+@import './dangnhap.css';
+@import './header.css';
+@import './footer.css';
