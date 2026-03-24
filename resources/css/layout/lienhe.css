@@ -1,156 +1,147 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Rubik:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
-/* Fix lỗi giật màn hình do thanh cuộn */
+:root {
+    /* ── Palette màu Decor Cao Cấp ── */
+    --clx-bg-page: #FDFBFA;   /* Trắng kem ấm */
+    --clx-bg-card: #FFFFFF;   /* Trắng tinh cho thẻ */
+    --clx-primary: #C98A53;   /* Vàng đồng (Accent) */
+    --clx-primary-dark: #B07644;
+    --clx-text-main: #3D352E; /* Nâu xám cực đậm (chữ chính) */
+    --clx-text-muted: #82756A; /* Nâu xám nhạt */
+    --clx-border: #E8E1DA;    /* Viền xám kem */
+    --clx-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    
+    /* Font chữ */
+    --clx-font-heading: 'Playfair Display', serif;
+    --clx-font-body: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Bo góc */
+    --clx-radius-lg: 16px;
+    --clx-radius-md: 8px;
+}
 
-html {
-    overflow-y: scroll;
-    /* Luôn hiện thanh cuộn dọc */
+/* === CÀI ĐẶT CƠ BẢN === */
+* { box-sizing: border-box; }
+
+body {
+    font-family: var(--clx-font-body);
+    background-color: var(--clx-bg-page);
+    color: var(--clx-text-main);
+    line-height: 1.6;
 }
 
 .contact-wrapper {
-    --c-bg-1: #0b0b0b;
-    --c-bg-2: #141414;
-    --c-card: #111216;
-    --c-muted: #9aa0a6;
-    --c-accent: #bdbdbd;
-    --c-glass: rgba(255, 255, 255, 0.03);
-    --c-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
-    --c-radius: 14px;
+    padding: 40px 0 80px;
+    background-color: var(--clx-bg-page);
 }
-
-.contact-wrapper {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: linear-gradient(180deg, var(--c-bg-1) 0%, #0f1114 35%, #1a1b1d 100%);
-    color: #e6e6e6;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.45;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100%;
-    /* ĐIỀU CHỈNH: Giảm padding top vì không còn Header cố định */
-    padding: 40px 20px;
-    box-sizing: border-box;
-    margin-top: 80px;
-}
-
-.contact-wrapper * {
-    box-sizing: border-box;
-}
-
-
-/* Container chính */
 
 .contact-ui-wrap {
-    width: 100%;
-    max-width: 1150px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: calc(var(--c-radius) + 6px);
-    padding: 28px;
-    box-shadow: var(--c-shadow);
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-
-/* Nút quay về trang chủ */
-
-.contact-back-home {
-    color: var(--c-muted);
-    font-size: 20px;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-}
-
-.contact-back-home:hover {
-    color: #fff;
-    transform: translateX(-3px);
-}
-
-
-/* Các class cũ vẫn giữ nguyên... */
-
-.contact-ui-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -30% -40% auto auto;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0) 40%), linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0));
-    transform: rotate(25deg);
-    pointer-events: none;
-}
-
+/* =========================================
+   1. HEADER TRANG LIÊN HỆ (TOP BAR)
+========================================= */
 .contact-ui-top {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 18px;
+    align-items: center;
+    background-color: var(--clx-bg-card);
+    border-radius: var(--clx-radius-lg);
+    padding: 30px 40px;
+    margin-bottom: 40px;
+    box-shadow: var(--clx-shadow);
+    border: 1px solid var(--clx-border);
 }
 
 .contact-ui-title-group {
     display: flex;
-    gap: 16px;
     align-items: center;
+    gap: 20px;
 }
 
 .contact-ui-logo {
-    width: 56px;
-    height: 56px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #2b2b2b 0%, #111 100%);
+    font-family: var(--clx-font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* Mặc định là gold giống style mới */
+    background-color: var(--clx-primary); 
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    font-weight: 700;
-    color: var(--c-accent);
-    font-family: 'Rubik', sans-serif;
+    box-shadow: 0 4px 10px rgba(201,138,83,0.3);
 }
 
 .contact-ui-heading h1 {
-    margin: 0;
-    font-size: 20px;
+    font-family: var(--clx-font-heading);
+    font-size: 2.25rem;
     font-weight: 700;
-    letter-spacing: 0.2px;
-    color: #f5f5f5;
+    color: var(--clx-text-main);
+    margin: 0;
 }
 
 .contact-ui-heading p {
-    margin: 0;
-    color: var(--c-muted);
-    font-size: 13px;
+    color: var(--clx-text-muted);
+    margin: 2px 0 0;
+    font-size: 1rem;
 }
 
+/* Sửa lại giờ làm việc cho hợp nền sáng */
+.contact-ui-foot span {
+    color: var(--clx-text-main) !important;
+    font-weight: 500;
+}
+
+.contact-ui-foot div[style*="background"] {
+    background: var(--clx-border) !important;
+}
+
+/* =========================================
+   2. CẤU TRÚC CHÍNH (COLUMNS)
+========================================= */
 .contact-ui-cols {
-    display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 22px;
-    align-items: start;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
 }
 
+/* Thẻ Card dùng chung (Form và Info) */
 .contact-ui-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: var(--c-radius);
-    padding: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
+    flex: 1;
+    background-color: var(--clx-bg-card);
+    padding: 40px;
+    border-radius: var(--clx-radius-lg);
+    box-shadow: var(--clx-shadow);
+    border: 1px solid var(--clx-border);
 }
 
+/* Cột phải (Sidebar) */
+.contact-ui-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 380px;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   3. FORM NHẬP LIỆU (FLOATING LABELS)
+========================================= */
 .contact-ui-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
 }
 
 .contact-ui-row {
     display: flex;
-    gap: 12px;
+    gap: 20px;
 }
 
 .contact-ui-col {
@@ -159,166 +150,185 @@ html {
 
 .contact-ui-field {
     position: relative;
+    margin-bottom: 5px;
 }
 
-.contact-wrapper input,
-.contact-wrapper textarea {
+/* Style cho Input và Textarea */
+.contact-ui-field input,
+.contact-ui-field textarea {
     width: 100%;
-    background: var(--c-glass);
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 14px 14px 12px 14px;
-    color: #eaeaea;
-    border-radius: 10px;
-    outline: none;
-    font-size: 14px;
-    transition: all 0.2s ease;
+    padding: 16px 18px;
+    background-color: var(--clx-bg-card);
+    border: 1px solid var(--clx-border);
+    border-radius: var(--clx-radius-md);
+    color: var(--clx-text-main);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+}
+
+.contact-ui-field textarea {
     resize: vertical;
-    min-height: 44px;
+    min-height: 120px;
 }
 
-.contact-wrapper input:focus,
-.contact-wrapper textarea:focus {
-    box-shadow: 0 6px 18px rgba(20, 20, 20, 0.6), 0 0 0 4px rgba(255, 255, 255, 0.01) inset;
-    border-color: #8f8f8f;
-    transform: translateY(-1px);
-}
-
+/* Label nổi (Floating) */
 .contact-ui-label-float {
     position: absolute;
-    left: 14px;
-    top: 12px;
-    font-size: 13px;
-    color: var(--c-muted);
+    left: 18px;
+    top: 16px;
+    color: var(--clx-text-muted);
+    font-size: 0.95rem;
     pointer-events: none;
-    transition: all 0.18s ease;
+    transition: all 0.2s ease-out;
 }
 
-.contact-wrapper input:not(:placeholder-shown)+.contact-ui-label-float,
-.contact-wrapper textarea:not(:placeholder-shown)+.contact-ui-label-float,
-.contact-wrapper input:focus+.contact-ui-label-float,
-.contact-wrapper textarea:focus+.contact-ui-label-float {
-    transform: translateY(-10px) scale(0.86);
-    color: #cfcfcf;
-    background: transparent;
-    padding: 0 4px;
+/* Hiệu ứng khi Focus hoặc đã nhập liệu */
+.contact-ui-field input:focus,
+.contact-ui-field textarea:focus {
+    outline: none;
+    border-color: var(--clx-primary);
+    box-shadow: 0 0 0 4px rgba(201,138,83,0.1);
 }
 
-.contact-wrapper textarea {
-    min-height: 120px;
-    padding-top: 18px;
+.contact-ui-field input:focus ~ .contact-ui-label-float,
+.contact-ui-field input:not(:placeholder-shown) ~ .contact-ui-label-float,
+.contact-ui-field textarea:focus ~ .contact-ui-label-float,
+.contact-ui-field textarea:not(:placeholder-shown) ~ .contact-ui-label-float {
+    top: -10px;
+    left: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--clx-primary);
+    background-color: #fff;
+    padding: 0 6px;
 }
 
+/* =========================================
+   4. NÚT BẤM VÀ METADATA FORM
+========================================= */
 .contact-ui-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
-}
-
-.contact-ui-btn {
-    background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 12px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
-    transition: all 0.14s ease;
-}
-
-.contact-ui-btn:active {
-    transform: translateY(1px);
-}
-
-.contact-ui-btn.primary {
-    background: linear-gradient(90deg, #2e2e2e, #0f0f0f);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 25px;
 }
 
 .contact-ui-hint {
-    font-size: 13px;
-    color: var(--c-muted);
+    color: var(--clx-text-muted);
+    font-size: 0.85rem;
 }
 
-.contact-ui-side {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* Nút bấm chung */
+.contact-ui-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--clx-radius-md);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    border: 1px solid var(--clx-border);
+    background-color: #FFFFFF;
+    color: var(--clx-text-main);
 }
 
+.contact-ui-btn:hover {
+    background-color: #FDFBFA;
+    border-color: #CBD5E1;
+}
+
+/* Nút Gửi (Primary) */
+.contact-ui-btn.primary {
+    background: linear-gradient(135deg, var(--clx-primary) 0%, var(--clx-primary-dark) 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(201,138,83,0.3);
+}
+
+.contact-ui-btn.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(201,138,83,0.4);
+}
+
+/* =========================================
+   5. SIDEBAR: BẢN ĐỒ VÀ THÔNG TIN
+========================================= */
+/* Khung bản đồ */
 .contact-ui-map-wrap {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.55);
-    height: 260px;
     position: relative;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: var(--clx-radius-lg);
+    overflow: hidden;
+    height: 260px;
+    box-shadow: var(--clx-shadow);
+    border: 1px solid var(--clx-border);
 }
 
 .contact-ui-map-wrap iframe {
     width: 100%;
     height: 100%;
     border: 0;
-    display: block;
+    /* Làm bản đồ nhạt màu một chút cho hợp style */
+    filter: grayscale(20%); 
 }
 
 .contact-ui-map-actions {
     position: absolute;
-    right: 10px;
-    top: 10px;
+    bottom: 15px;
+    right: 15px;
     display: flex;
-    gap: 8px;
-    z-index: 4;
+    gap: 10px;
+    z-index: 10;
 }
 
 .contact-ui-chip {
-    padding: 8px 10px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    color: #eaeaea;
-    font-size: 13px;
-    display: inline-flex;
-    gap: 8px;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: none;
+    background-color: #fff;
+    color: var(--clx-dark);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: transform 0.12s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: 0.2s;
 }
 
-.contact-ui-chip:active {
-    transform: translateY(1px);
+.contact-ui-chip:hover {
+    background-color: #FDFBFA;
+    transform: translateY(-1px);
 }
 
+/* Thẻ thông tin liên hệ */
 .contact-ui-info {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent);
-    border-radius: 8px;
+    padding: 30px;
 }
 
 .contact-ui-info-item {
     display: flex;
-    gap: 12px;
     align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.contact-ui-info-item:last-child {
+    margin-bottom: 0;
 }
 
 .contact-ui-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.02);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(201,138,83,0.1);
+    color: var(--clx-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    color: var(--c-accent);
+    font-size: 1.15rem;
 }
 
 .contact-ui-content {
@@ -327,140 +337,145 @@ html {
 }
 
 .contact-ui-label {
-    font-size: 13px;
-    color: var(--c-muted);
+    color: var(--clx-text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
 
 .contact-ui-value {
+    color: var(--clx-text-main);
     font-weight: 600;
-    color: #efefef;
+    font-size: 0.95rem;
 }
 
-.contact-ui-foot {
+/* Footer Sidebar (Copyright & Socials) */
+.contact-ui-side .contact-ui-foot {
     display: flex;
-    gap: 10px;
-    align-items: center;
     justify-content: space-between;
-    margin-top: 8px;
-    color: var(--c-muted);
-    font-size: 13px;
+    align-items: center;
+    padding: 0 10px;
+    margin-top: 10px;
+    color: var(--clx-text-muted);
+    font-size: 0.9rem;
 }
 
 .contact-ui-socials {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 .contact-ui-socials a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    color: var(--c-accent);
+    color: var(--clx-text-muted);
+    transition: 0.2s;
+    font-size: 1.1rem;
 }
 
-.contact-ui-snack {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    bottom: 24px;
-    background: linear-gradient(180deg, #1e1f21, #0f0f10);
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.22s ease, transform 0.22s ease;
-    z-index: 1000;
+.contact-ui-socials a:hover {
+    color: var(--clx-primary);
+    transform: scale(1.1);
 }
 
-.contact-ui-snack.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-}
-
+/* =========================================
+   6. MODAL BẢN ĐỒ VÀ THÔNG BÁO (SNACK)
+========================================= */
+/* Modal Bản đồ lớn */
 .contact-ui-modal {
     position: fixed;
     inset: 0;
-    background: rgba(5, 5, 5, 0.85);
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px); /* Hiệu ứng kính mờ iOS */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 1200;
-    padding: 20px;
-    visibility: hidden;
+    align-items: center;
     opacity: 0;
-    transition: opacity 0.18s ease, visibility 0.18s;
+    visibility: hidden;
+    transition: 0.3s;
 }
 
-.contact-ui-modal.show {
-    visibility: visible;
+.contact-ui-modal.active {
     opacity: 1;
+    visibility: visible;
 }
 
 .contact-ui-modal-card {
-    width: 100%;
-    max-width: 1100px;
+    background: #fff;
+    width: 90%;
+    max-width: 900px;
     height: 80vh;
-    border-radius: 14px;
+    border-radius: var(--clx-radius-lg);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: scale(0.95);
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-ui-modal.active .contact-ui-modal-card {
+    transform: scale(1);
 }
 
 .contact-ui-close-btn {
     position: absolute;
-    right: 22px;
-    top: 22px;
-    background: rgba(0, 0, 0, 0.45);
-    color: #fff;
-    border-radius: 10px;
-    padding: 8px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.8);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
     cursor: pointer;
+    backdrop-filter: blur(4px);
 }
 
-@media (max-width:980px) {
-    .contact-wrapper {
-        padding: 20px;
-    }
+/* Thông báo nhanh (Snack) */
+.contact-ui-snack {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--clx-text-main);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: var(--clx-radius-md);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(100px);
+    transition: 0.3s;
+    z-index: 10000;
+}
+
+.contact-ui-snack.active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   7. RESPONSIVE (MÀN HÌNH NHỎ)
+========================================= */
+@media screen and (max-width: 992px) {
     .contact-ui-cols {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
-    .contact-ui-map-wrap {
-        height: 220px;
+    
+    .contact-ui-side {
+        width: 100%;
     }
-    .contact-ui-wrap {
-        padding: 18px;
-    }
+}
+
+@media screen and (max-width: 768px) {
     .contact-ui-top {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 15px;
+        padding: 20px;
     }
-}
-
-@media (max-width:420px) {
-    .contact-ui-logo {
-        width: 48px;
-        height: 48px;
-        border-radius: 10px;
+    
+    .contact-ui-row {
+        flex-direction: column;
+        gap: 0;
     }
-    .contact-ui-map-wrap {
-        height: 200px;
-    }
-    .contact-ui-card {
-        padding: 16px;
-    }
-    .contact-wrapper input,
-    .contact-wrapper textarea {
-        padding: 12px;
+    
+    .contact-ui-heading h1 {
+        font-size: 1.75rem;
     }
 }

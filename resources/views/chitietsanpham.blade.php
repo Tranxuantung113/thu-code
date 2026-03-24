@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $product->tensp }} - Predator Group</title>
+    <title>{{ $product->tensp }} - Tiệm Đồ Decor</title>
     {{-- CSS chính --}}
     @vite(['resources/css/layout/chitietsanpham.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -134,12 +134,11 @@
 
             <div class="wtch-details-zone">
                 <div>
-                    <span class="wtch-brand-tag">{{ $product->brand ? $product->brand->ten_thuonghieu : 'PREDATOR' }}</span>
+                    <span class="wtch-brand-tag">{{ $product->brand ? $product->brand->ten_thuonghieu : 'Trang Trí' }}</span>
                     <h1 class="wtch-product-title">{{ $product->tensp }}</h1>
 
                     <div class="wtch-rating-zone">
                         <div class="wtch-stars">
-                            {{-- Hiển thị sao trung bình trên đầu trang --}}
                             @php $rating = $averageRating ?? 0; @endphp
                             @for($i = 1; $i <= 5; $i++)
                                 <i class="{{ $i <= round($rating) ? 'fa-solid' : 'fa-regular' }} fa-star"></i>
@@ -155,7 +154,7 @@
 
                 @if(isset($colors) && $colors->count() > 0)
                 <div class="wtch-attr-section">
-                    <div class="wtch-attr-label">Màu sắc</div>
+                    <div class="wtch-attr-label">Chất liệu / Màu sắc</div>
                     <div class="wtch-size-options">
                         @foreach($colors as $color)
                         <div class="wtch-size-item" onclick="selectAttr(this)">{{ $color }}</div>
@@ -166,7 +165,7 @@
 
                 @if(isset($sizes) && $sizes->count() > 0)
                 <div class="wtch-attr-section">
-                    <div class="wtch-attr-label">Kích thước</div>
+                    <div class="wtch-attr-label">Kích thước (DxRxC)</div>
                     <div class="wtch-size-options">
                         @foreach($sizes as $size)
                         <div class="wtch-size-item" onclick="selectAttr(this)">{{ $size }}</div>
@@ -195,10 +194,10 @@
                 </div>
 
                 <div class="wtch-features-grid">
-                    <div class="wtch-feature-item"><i class="fa-solid fa-shield-halved wtch-feature-icon"></i> Bảo hành chính hãng</div>
+                    <div class="wtch-feature-item"><i class="fa-solid fa-shield-halved wtch-feature-icon"></i> Chất lượng đảm bảo</div>
                     <div class="wtch-feature-item"><i class="fa-solid fa-truck-fast wtch-feature-icon"></i> Miễn phí vận chuyển</div>
-                    <div class="wtch-feature-item"><i class="fa-solid fa-rotate wtch-feature-icon"></i> Đổi trả trong 30 ngày</div>
-                    <div class="wtch-feature-item"><i class="fa-regular fa-gem wtch-feature-icon"></i> 100% Authentic</div>
+                    <div class="wtch-feature-item"><i class="fa-solid fa-rotate wtch-feature-icon"></i> Đổi trả trong 7 ngày</div>
+                    <div class="wtch-feature-item"><i class="fa-regular fa-gem wtch-feature-icon"></i> Đóng gói an toàn</div>
                 </div>
             </div>
         </div>
@@ -229,10 +228,6 @@
                         <td>{{ $product->category ? $product->category->ten_danhmuc : 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td>Giới tính</td>
-                        <td>{{ $product->gender == 'male' ? 'Nam' : ($product->gender == 'female' ? 'Nữ' : 'Unisex') }}</td>
-                    </tr>
-                    <tr>
                         <td>Mã sản phẩm</td>
                         <td>{{ $product->sku ?? '---' }}</td>
                     </tr>
@@ -240,9 +235,7 @@
             </div>
         </div>
 
-        {{-- ========================================== --}}
-        {{-- PHẦN ĐÁNH GIÁ & BÌNH LUẬN (MỚI THÊM) --}}
-        {{-- ========================================== --}}
+        {{-- Phần đánh giá & bình luận --}}
         <div class="wtch-reviews-section">
             <h3 class="wtch-section-title">Đánh giá & Bình luận ({{ $reviewCount ?? 0 }})</h3>
             
@@ -262,7 +255,6 @@
                 </div>
             </div>
 
-            {{-- Thông báo lỗi/thành công từ Session --}}
             @if(session('success'))
                 <div style="padding: 10px; background: #d4edda; color: #155724; border-radius: 4px; margin-bottom: 20px;">
                     {{ session('success') }}
@@ -274,7 +266,6 @@
                 </div>
             @endif
 
-            {{-- Form gửi đánh giá --}}
             @auth
             <form action="{{ route('review.store') }}" method="POST" class="wtch-review-form" style="margin-bottom: 40px;">
                 @csrf
@@ -305,7 +296,6 @@
             </div>
             @endauth
 
-            {{-- Danh sách đánh giá --}}
             <div class="wtch-review-list">
                 @if($product->reviews && $product->reviews->count() > 0)
                     @foreach($product->reviews as $review)

@@ -12,7 +12,6 @@ class Products extends Model
     // Khai báo các cột được phép lưu vào database
     protected $fillable = [
         'tensp', 
-        'gender', 
         'mota', 
         'gia', 
         'so_luong', // <--- QUAN TRỌNG: Phải có cột này

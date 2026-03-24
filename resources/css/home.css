@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+/* === CÀI ĐẶT CHUNG === */
+:root {
+    --bg-main: #ffffff;
+    --bg-light: #f9f9f9;
+    --text-dark: #212529;
+    --text-muted: #6c757d;
+    --accent-gold: #D4AF37; /* Màu vàng đồng (Gold) cho đồ Decor */
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+    --border-radius: 4px; /* Góc bo nhẹ nhàng, tinh tế */
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-dark);
+    background-color: var(--bg-main);
+    overflow-x: hidden;
+}
+
+/* === TYPOGRAPHY === */
+.section-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .section-title { font-size: 2rem; }
+}
+
+/* === BUTTONS === */
+.btn-decor-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background-color: var(--text-dark);
+    color: #ffffff;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-decor-primary:hover {
+    background-color: var(--accent-gold);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.btn-decor-outline {
+    display: inline-flex;
+    padding: 10px 24px;
+    background-color: transparent;
+    border: 1px solid var(--text-dark);
+    color: var(--text-dark);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-decor-outline:hover {
+    background-color: var(--text-dark);
+    color: #ffffff;
+}
+
+/* === 1. HERO SECTION === */
+.decor-hero {
+    display: flex;
+    align-items: center;
+    height: 80vh;
+    min-height: 500px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    flex: 0 0 50%;
+    padding: 0 10%;
+    z-index: 2;
+}
+
+.hero-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+@media (max-width: 992px) {
+    .decor-hero { height: auto; padding: 60px 0; flex-direction: column-reverse; }
+    .hero-content { flex: 0 0 100%; padding: 40px 15px; text-align: center; }
+    .hero-image { position: relative; width: 100%; height: 300px; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-description { margin-left: auto; margin-right: auto; }
+}
+
+/* === 2. CATEGORY SECTION === */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.category-image {
+    width: 100%;
+    height: 350px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.05);
+}
+
+.category-card:hover .category-name {
+    color: var(--accent-gold);
+}
+
+/* === 3. NEW ARRIVALS === */
+.decor-new-arrivals {
+    background-color: var(--bg-light);
+}
+
+.view-all-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.view-all-link:hover {
+    color: var(--accent-gold);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.decor-product-card {
+    background: #ffffff;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding-bottom: 15px;
+}
+
+.product-image-wrapper {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-details {
+    padding: 10px;
+}
+
+.product-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.product-title a {
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+}
+
+.decor-product-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.decor-product-card:hover .product-image-wrapper img {
+    transform: scale(1.03);
+}
+
+/* === Hỗ trợ Bootstrap Utility Classes nếu cần === */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+.py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+.mb-5 { margin-bottom: 3rem; }
+.text-center { text-align: center; }
+.d-flex { display: flex; }
+.justify-content-between { justify-content: space-between; }
+.align-items-center { align-items: center; }
