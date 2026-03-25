@@ -177,8 +177,8 @@
     <div class="header-top">
         <div class="header-top-content">
             <span>✉ NgũVịHương@5heros.vn</span>
-            <span>🚚 MIỄN PHÍ VẬN CHUYỂN NẾU XINH GÁI</span>
-            <span>📞 Gọi cho anh 0399506003</span>
+            <span>🚚 MIỄN PHÍ VẬN CHUYỂN ĐƠN TRÊN 500K</span>
+            <span>📞 0399506003</span>
         </div>
     </div>
 
