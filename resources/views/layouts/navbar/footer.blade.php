@@ -1,106 +1,405 @@
-<footer class="pw-footer">
-    <div class="pw-footer-decoration pw-decoration-1"></div>
-    <div class="pw-footer-decoration pw-decoration-2"></div>
+{{-- resources/views/layout/footer.blade.php --}}
 
-    <div class="pw-footer-container">
-        <div class="pw-footer-grid">
+<style>
+    /* ── FOOTER ── */
+    .main-footer {
+        background: #1a1a1a url('{{ asset("storage/images/footer-bg.jpg") }}') center/cover no-repeat;
+        color: #aaaaaa;
+        font-size: 13px;
+        padding-top: 70px;
+    }
 
-            <!-- Brand Section -->
-            <div class="pw-footer-brand">
-                <div class="pw-brand-logo">
-                    <div class="pw-brand-logo-icon">🪴</div>
-                    <h2>
-                        5 HEROS DECOR
-                        <span>Home &amp; Living</span>
-                    </h2>
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+
+    /* Brand column */
+    .footer-logo {
+        margin-bottom: 18px;
+    }
+    .footer-logo a {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 1px;
+    }
+    .footer-logo a span { color: var(--accent); }
+
+    .footer-desc {
+        line-height: 1.8;
+        color: #888;
+        margin-bottom: 22px;
+    }
+
+    .footer-contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-contact-info li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: #888;
+    }
+    .footer-contact-info li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+
+    /* Footer columns */
+    .footer-widget h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 17px;
+        color: #fff;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        position: relative;
+    }
+    .footer-widget h2::after {
+        content: '';
+        position: absolute;
+        bottom: -1px; left: 0;
+        width: 40px; height: 2px;
+        background: var(--accent);
+    }
+
+    /* Tags */
+    .tags-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .tags-list a {
+        display: inline-block;
+        padding: 5px 12px;
+        border: 1px solid rgba(255,255,255,.12);
+        color: #999;
+        font-size: 12px;
+        transition: all .2s;
+        text-decoration: none;
+    }
+    .tags-list a:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+    }
+
+    /* Recent Works gallery thumbs */
+    .gallery-widget { margin-top: 28px; }
+    .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 4px; }
+    .gallery-thumb { position: relative; aspect-ratio: 1; overflow: hidden; }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.7); transition: filter .2s; }
+    .gallery-thumb:hover img { filter: brightness(1); }
+    .gallery-thumb .thumb-link {
+        position: absolute; inset: 0;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 14px; opacity: 0;
+        transition: opacity .2s;
+    }
+    .gallery-thumb:hover .thumb-link { opacity: 1; }
+
+    /* Recent Posts */
+    .posts-widget .post {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .posts-widget .post:last-child { border-bottom: none; margin-bottom: 0; }
+    .post-thumb-img {
+        width: 62px; height: 62px;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 1px solid rgba(255,255,255,.1);
+    }
+    .post-desc a {
+        display: block;
+        font-size: 12px;
+        color: #aaa;
+        line-height: 1.5;
+        margin-bottom: 5px;
+        text-decoration: none;
+        transition: color .2s;
+    }
+    .post-desc a:hover { color: var(--accent); }
+    .post-time { font-size: 11px; color: #666; display: flex; align-items: center; gap: 5px; }
+    .post-time i { color: var(--accent); }
+
+    .view-more-btn {
+        display: inline-block;
+        margin-top: 16px;
+        font-size: 12px;
+        color: var(--accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        text-decoration: none;
+    }
+    .view-more-btn:hover { color: #fff; }
+
+    /* Send Message Form */
+    .contact-widget .nl-form { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .contact-widget input,
+    .contact-widget textarea {
+        width: 100%;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.1);
+        padding: 10px 14px;
+        color: #ccc;
+        font-size: 12px;
+        font-family: 'Open Sans', sans-serif;
+        outline: none;
+        transition: border-color .2s;
+    }
+    .contact-widget input:focus,
+    .contact-widget textarea:focus { border-color: var(--accent); }
+    .contact-widget textarea { height: 80px; resize: none; }
+    .contact-widget button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 10px 22px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .8px;
+        cursor: pointer;
+        font-family: 'Open Sans', sans-serif;
+        align-self: flex-start;
+        transition: background .2s;
+    }
+    .contact-widget button:hover { background: var(--accent-dark); }
+
+    /* Social links */
+    .footer-social { display: flex; gap: 8px; margin-top: 20px; }
+    .footer-social a {
+        width: 34px; height: 34px;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.1);
+        display: flex; align-items: center; justify-content: center;
+        color: #888;
+        font-size: 14px;
+        transition: all .2s;
+    }
+    .footer-social a:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,.08);
+        padding: 20px 0;
+    }
+    .footer-bottom-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .copyright { font-size: 12px; color: #666; }
+    .copyright a { color: var(--accent); }
+    .copyright a:hover { color: #fff; }
+
+    .footer-nav { display: flex; gap: 0; }
+    .footer-nav li a {
+        padding: 4px 14px;
+        font-size: 12px;
+        color: #777;
+        border-right: 1px solid rgba(255,255,255,.1);
+        transition: color .2s;
+        text-decoration: none;
+    }
+    .footer-nav li:last-child a { border-right: none; }
+    .footer-nav li a:hover { color: var(--accent); }
+
+    .payment-methods {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: #666;
+    }
+    .payment-icon {
+        background: rgba(255,255,255,.08);
+        color: #aaa;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 8px;
+        border: 1px solid rgba(255,255,255,.1);
+        letter-spacing: .3px;
+    }
+
+    /* Scroll to top */
+    .scroll-to-top {
+        position: fixed;
+        bottom: 90px; right: 28px;
+        width: 40px; height: 40px;
+        background: var(--accent);
+        color: #fff;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 16px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .3s;
+        z-index: 400;
+        border: none;
+    }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { background: var(--accent-dark); }
+
+    @media (max-width: 991px) {
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+        .footer-bottom-inner { flex-direction: column; text-align: center; }
+        .footer-nav { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+        .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    }
+</style>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+
+            {{-- ── Brand Column ── --}}
+            <div class="footer-widget">
+                <div class="footer-logo">
+                    <a href="/"><span>5</span> HEROS DECOR</a>
                 </div>
-                <p class="pw-brand-description">
-                    Biến không gian sống của bạn thành tuyệt phẩm nghệ thuật. 
-                    Chúng tôi mang đến những món đồ decor tinh tế, kết hợp hài hòa 
-                    giữa vẻ đẹp tự nhiên và phong cách sống hiện đại.
+                <p class="footer-desc">
+                    Biến không gian sống của bạn thành tuyệt phẩm nghệ thuật. Chúng tôi mang đến những món đồ decor tinh tế, kết hợp hài hòa giữa vẻ đẹp tự nhiên và phong cách sống hiện đại Việt Nam.
                 </p>
-                <div class="pw-social-links">
-                    <a href="#" class="pw-social-link">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="pw-social-link">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="pw-social-link">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="pw-social-link">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                        </svg>
-                    </a>
+                <ul class="footer-contact-info">
+                    <li><i class="fa fa-map-marker"></i> 123 Đường ABC, Buôn Ma Thuột, Đắk Lắk</li>
+                    <li><i class="fa fa-phone"></i> 0399 506 003</li>
+                    <li><i class="fa fa-envelope-o"></i> NgũVịHương@5heros.vn</li>
+                </ul>
+                <div class="footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
                 </div>
             </div>
 
-            <!-- Sản Phẩm -->
-            <div class="pw-footer-section">
-                <h3>Sản Phẩm</h3>
-                <ul class="pw-footer-links">
-                    <li><a href="#">Bộ sưu tập mới</a></li>
-                    <li><a href="#">Decor phòng khách</a></li>
-                    <li><a href="#">Decor phòng ngủ</a></li>
-                    <li><a href="#">Cây & chậu cảnh</a></li>
-                    <li><a href="#">Bán chạy nhất</a></li>
-                </ul>
-            </div>
-
-            <!-- Dịch Vụ -->
-            <div class="pw-footer-section">
-                <h3>Dịch Vụ</h3>
-                <ul class="pw-footer-links">
-                    <li><a href="#">Tư vấn thiết kế nội thất</a></li>
-                    <li><a href="#">Gói trang trí theo yêu cầu</a></li>
-                    <li><a href="#">Vận chuyển toàn quốc</a></li>
-                    <li><a href="#">Đổi trả trong 30 ngày</a></li>
-                    <li><a href="#">Chứng nhận xuất xứ</a></li>
-                </ul>
-            </div>
-
-            <!-- Newsletter -->
-            <div class="pw-footer-section">
-                <h3>Đăng Ký Nhận Tin</h3>
-                <p class="pw-brand-description">
-                    Nhận cảm hứng trang trí mới nhất và ưu đãi độc quyền dành riêng cho bạn
-                </p>
-                <form class="pw-newsletter-form" onsubmit="handleNewsletter(event)">
-                    <div class="pw-newsletter-input-group">
-                        <input type="email" class="pw-newsletter-input" placeholder="Email của bạn" required>
-                        <button type="submit" class="pw-newsletter-btn">
-                            <span id="btnText">Gửi</span>
-                        </button>
+            {{-- ── Tags + Gallery Column ── --}}
+            <div>
+                <div class="footer-widget tags-widget">
+                    <h2>Từ Khóa Phổ Biến</h2>
+                    <ul class="tags-list">
+                        <li><a href="#">Decor</a></li>
+                        <li><a href="#">Gốm Sứ</a></li>
+                        <li><a href="#">Nội Thất</a></li>
+                        <li><a href="#">Rèm Cửa</a></li>
+                        <li><a href="#">Cây Cảnh</a></li>
+                        <li><a href="#">Boho</a></li>
+                        <li><a href="#">Minimalist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-widget gallery-widget" style="margin-top:28px;">
+                    <h2>Công Trình Gần Đây</h2>
+                    <div class="gallery-thumbs">
+                        @foreach(['img1','img2','img3','img1','img2','img3','img1','img2'] as $img)
+                        <div class="gallery-thumb">
+                            <img src="{{ asset('storage/images/' . $img . '.webp') }}" alt="gallery"
+                                 onerror="this.src='https://placehold.co/80x80/2a2a2a/666?text=D'">
+                            <a href="#" class="thumb-link"><i class="fa fa-link"></i></a>
+                        </div>
+                        @endforeach
                     </div>
-                    <p class="pw-newsletter-text">
-                        Bằng cách đăng ký, bạn đồng ý với điều khoản của chúng tôi
-                    </p>
-                </form>
+                </div>
+            </div>
+
+            {{-- ── Recent Posts Column ── --}}
+            <div class="footer-widget posts-widget">
+                <h2>Tin Tức Mới Nhất</h2>
+                <div class="posts">
+                    @php
+                    $fp = [
+                        ['title'=>'5 Xu Hướng Decor Nổi Bật Năm 2025','date'=>'20 tháng 3, 2025'],
+                        ['title'=>'Cách Phối Màu Theo Phong Cách Wabi-Sabi','date'=>'15 tháng 3, 2025'],
+                        ['title'=>'Chọn Cây Xanh Phù Hợp Không Gian Sống','date'=>'10 tháng 3, 2025'],
+                    ];
+                    @endphp
+                    @foreach($fp as $post)
+                    <div class="post">
+                        <img class="post-thumb-img"
+                             src="https://placehold.co/62x62/2a2a2a/666?text=N"
+                             alt="post">
+                        <div class="post-desc">
+                            <a href="#">{{ $post['title'] }}</a>
+                            <div class="post-time"><i class="fa fa-clock-o"></i> {{ $post['date'] }}</div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <a href="#" class="view-more-btn">Đọc Thêm <i class="fa fa-caret-right"></i></a>
+            </div>
+
+            {{-- ── Contact Form Column ── --}}
+            <div class="footer-widget contact-widget">
+                <h2>Gửi Tin Nhắn</h2>
+                <div class="nl-form">
+                    <form method="post" action="{{ route('lienhe') }}">
+                        @csrf
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            <input type="text" name="name" placeholder="Họ &amp; Tên" required>
+                            <input type="email" name="email" placeholder="Email *" required>
+                            <textarea name="message" placeholder="Nội dung tin nhắn *" required></textarea>
+                            <button type="submit">Gửi Tin</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bottom Section -->
-        <div class="pw-footer-bottom">
-            <div class="pw-copyright">
-                © 2024 5 HEROS DECOR. All rights reserved. | 
-                <a href="#">Privacy Policy</a> | 
-                <a href="#">Terms of Service</a>
-            </div>
-            <div class="pw-payment-methods">
-                <span>Phương thức thanh toán:</span>
-                <div class="pw-payment-icon">VISA</div>
-                <div class="pw-payment-icon">VNPAY</div>
-                <div class="pw-payment-icon">AMEX</div>
-                <div class="pw-payment-icon">PP</div>
+    {{-- Footer Bottom --}}
+    <div class="footer-bottom">
+        <div class="footer-container">
+            <div class="footer-bottom-inner">
+                <div class="copyright">
+                    &copy; {{ date('Y') }} <a href="/">5 Heros Decor</a>. All rights reserved. |
+                    <a href="#">Chính Sách Bảo Mật</a> |
+                    <a href="#">Điều Khoản Dịch Vụ</a>
+                </div>
+                <ul class="footer-nav">
+                    <li><a href="/">Trang Chủ</a></li>
+                    <li><a href="{{ route('sanpham') }}">Sản Phẩm</a></li>
+                    <li><a href="#">Dịch Vụ</a></li>
+                    <li><a href="{{ route('lienhe') }}">Liên Hệ</a></li>
+                </ul>
+                <div class="payment-methods">
+                    <span>Thanh toán:</span>
+                    <div class="payment-icon">VISA</div>
+                    <div class="payment-icon">VNPAY</div>
+                    <div class="payment-icon">MOMO</div>
+                    <div class="payment-icon">COD</div>
+                </div>
             </div>
         </div>
     </div>
 </footer>
+
+{{-- Scroll to top button --}}
+<button class="scroll-to-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fa fa-long-arrow-up"></i>
+</button>
+
+<script>
+window.addEventListener('scroll', function() {
+    const btn = document.getElementById('scrollTop');
+    if (window.scrollY > 400) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+});
+</script>
